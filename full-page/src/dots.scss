@@ -1,0 +1,14 @@
+.dots-container {
+    position: fixed;
+    top: 50%;
+    right: 100px;
+
+    .dots-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 20px;
+        height: 100px;
+    }
+}

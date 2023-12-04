@@ -1,8 +1,10 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
+import Dots from "./Dots"
 import "./App.scss"
 
 const App = () => {
     const containerRef = useRef<HTMLDivElement>(null)
+    const [scrollIndex, setScrollIndex] = useState<number>(1)
 
     useEffect(() => {
         const divRef = containerRef.current
@@ -78,6 +80,7 @@ const App = () => {
 
     return (
         <div className="container" ref={containerRef}>
+            <Dots scrollIndex={scrollIndex} />
             <div className="section bg1"></div>
             <div className="section bg2"></div>
             <div className="section bg3"></div>
