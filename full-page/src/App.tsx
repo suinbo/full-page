@@ -21,6 +21,7 @@ const App = () => {
                 if (deltaY > 0) {
                     if (scrollTop >= 0 && scrollTop < pageHeight) {
                         // 1페이지
+                        setScrollIndex(2)
                         divRef.scrollTo({
                             top: pageHeight,
                             left: 0,
@@ -28,6 +29,7 @@ const App = () => {
                         })
                     } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
                         // 2페이지
+                        setScrollIndex(3)
                         divRef.scrollTo({
                             top: pageHeight * 2,
                             left: 0,
@@ -35,6 +37,7 @@ const App = () => {
                         })
                     } else {
                         // 3페이지
+                        setScrollIndex(3)
                         divRef.scrollTo({
                             top: pageHeight * 2,
                             left: 0,
@@ -44,6 +47,7 @@ const App = () => {
                 } else {
                     if (scrollTop >= 0 && scrollTop < pageHeight) {
                         // 1페이지
+                        setScrollIndex(1)
                         divRef.scrollTo({
                             top: 0,
                             left: 0,
@@ -51,6 +55,7 @@ const App = () => {
                         })
                     } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
                         // 2페이지
+                        setScrollIndex(1)
                         divRef.scrollTo({
                             top: 0,
                             left: 0,
@@ -58,6 +63,7 @@ const App = () => {
                         })
                     } else {
                         // 3페이지
+                        setScrollIndex(2)
                         divRef.scrollTo({
                             top: pageHeight,
                             left: 0,
