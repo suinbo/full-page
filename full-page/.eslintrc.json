@@ -1,0 +1,17 @@
+{
+    "root": true,
+    "settings": {
+        "import/extensions": [".js", ".jsx", "ts", "tsx"],
+        "import/parser": {
+            "@typescript-eslint/parser": [".ts", ".tsx", ".d.ts", ".js", ".jsx"]
+        }
+    },
+    "env": { "browser": true, "es2020": true },
+    "extends": ["eslint:recommended"],
+    "ignorePatterns": ["dist"],
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["react-refresh"],
+    "rules": {
+        "react-refresh/only-export-components": ["warn"]
+    }
+}
