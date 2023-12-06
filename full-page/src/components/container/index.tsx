@@ -9,61 +9,24 @@ const Body = () => {
     const [scrollIndex, setScrollIndex] = useState<number>(1)
 
     const wheelHandler = useCallback((ref: React.RefObject<HTMLDivElement>, deltaY: number, scrollTop: number) => {
-        const pageHeight = window.innerHeight // 뷰포트 높이 값(100vh)
+        const innerHeight = window.innerHeight // 뷰포트 높이 값(100vh)
 
-        if (deltaY > 0) {
-            if (scrollTop >= 0 && scrollTop < pageHeight) {
-                // 1페이지
-                setScrollIndex(2)
-                ref.current?.scrollTo({
-                    top: pageHeight + DIVIDER_HEIGHT,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-                // 2페이지
-                setScrollIndex(3)
-                ref.current?.scrollTo({
-                    top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            } else {
-                // 3페이지
-                setScrollIndex(3)
-                ref.current?.scrollTo({
-                    top: pageHeight * 2 + DIVIDER_HEIGHT * 2,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            }
-        } else {
-            if (scrollTop >= 0 && scrollTop < pageHeight) {
-                // 1페이지
-                setScrollIndex(1)
-                ref.current?.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            } else if (scrollTop >= pageHeight && scrollTop < pageHeight * 2) {
-                // 2페이지
-                setScrollIndex(2)
-                ref.current?.scrollTo({
-                    top: 0,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            } else {
-                // 3페이지
-                setScrollIndex(2)
-                ref.current?.scrollTo({
-                    top: pageHeight + DIVIDER_HEIGHT,
-                    left: 0,
-                    behavior: "smooth",
-                })
-            }
+        const getPageDetails = (scrollTop: number) => {
+            const scrollPageIndex = Math.floor(scrollTop / innerHeight)
+            const scrollOffset = deltaY > 0 ? 1 : -1
+            const dest = Math.max(0, Math.min(scrollPageIndex + scrollOffset, 2)) // 범위: [0, 1, 2]
+
+            return { index: dest + 1, top: (innerHeight + DIVIDER_HEIGHT) * dest } // index: 페이지 번호, top: 스크롤하여 이동할 페이지의 최상단
         }
+
+        const { index, top } = getPageDetails(scrollTop)
+        setScrollIndex(index)
+
+        ref.current?.scrollTo({
+            top,
+            left: 0,
+            behavior: "smooth",
+        })
     }, [])
 
     const containerRef = useWheel(wheelHandler)
