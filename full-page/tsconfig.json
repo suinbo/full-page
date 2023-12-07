@@ -16,5 +16,6 @@
         "noEmit": true,
         "jsx": "react-jsx"
     },
-    "include": ["src"]
+    "include": ["src", "craco-alias.d.ts", "craco.config.ts"],
+    "extends": "./tsconfig.paths.json"
 }

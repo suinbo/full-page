@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react"
 import Dots from "./dots"
-import useWheel from "../../hooks/useWheel"
+import useWheel from "@hooks/useWheel"
 import "./style.scss"
 
 const DIVIDER_HEIGHT = 5
@@ -25,7 +25,7 @@ const Body = () => {
         ref.current?.scrollTo({
             top,
             left: 0,
-            behavior: "smooth",
+            behavior: "smooth"
         })
     }, [])
 
